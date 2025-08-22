@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+/* CSS Custom Properties for dynamic viewport handling */
+:root {
+  --dynamic-vh: 100vh;
+  --dynamic-vh-1: calc(var(--dynamic-vh) - 1px);
+}
+
+/* JavaScript will update these values */
+
 /* iOS 18 and iPhone 16 Pro Max specific fixes */
 @supports (-webkit-touch-callout: none) {
   * {
@@ -49,6 +57,7 @@ body {
   font-family: "Comic Sans MS", cursive, sans-serif;
   background: #f0f8ff;
   height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
   overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -114,6 +123,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
   max-width: 100%;
   margin: 0 auto;
   padding: 2rem;
@@ -460,6 +470,7 @@ body {
     justify-content: center;
     height: auto;
     min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
   }
 
   .landing-header {
@@ -1428,8 +1439,12 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
   background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
   overflow: hidden;
+  /* Ensure the container adapts to dynamic viewport changes */
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* Frame Borders */
@@ -1728,6 +1743,9 @@ body {
 @media (max-width: 768px) {
   .kids-frame-container {
     overflow: hidden;
+    /* Ensure the container adapts to dynamic viewport changes */
+    min-height: 100dvh;
+    height: 100dvh;
   }
 
   .top-border,
@@ -1763,6 +1781,8 @@ body {
     bottom: 40px;
     overflow-y: auto;
     overflow-x: hidden;
+    /* Ensure content area adapts to dynamic viewport */
+    min-height: calc(100dvh - 80px);
   }
 
   .floating-element {
@@ -1774,6 +1794,8 @@ body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    /* Ensure animation area adapts to dynamic viewport */
+    min-height: calc(100dvh - 80px);
   }
 
   .category-card {
@@ -1790,6 +1812,9 @@ body {
 @media (max-width: 480px) {
   .kids-frame-container {
     overflow: hidden;
+    /* Ensure the container adapts to dynamic viewport changes */
+    min-height: 100dvh;
+    height: 100dvh;
   }
 
   .top-border,
@@ -1825,6 +1850,8 @@ body {
     bottom: 30px;
     overflow-y: auto;
     overflow-x: hidden;
+    /* Ensure content area adapts to dynamic viewport */
+    min-height: calc(100dvh - 60px);
   }
 
   /* Additional touch improvements for very small screens */
@@ -1832,7 +1859,7 @@ body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
-    min-height: 60vh; /* Ensure large enough touch target */
+    min-height: calc(100dvh - 60px); /* Use dynamic viewport height */
   }
 
   .category-card {
@@ -2166,5 +2193,77 @@ body {
 
   .frame-menu-container {
     z-index: 1021;
+  }
+}
+
+/* Additional mobile viewport fixes for Chrome and Safari */
+@media screen and (max-width: 768px) {
+  /* Ensure bottom border is always visible */
+  .bottom-border {
+    position: fixed;
+    bottom: 0;
+    z-index: 1001;
+  }
+  
+  /* Ensure bottom corner is always visible */
+  .bottom-left,
+  .bottom-right {
+    position: fixed;
+    bottom: 0;
+    z-index: 1002;
+  }
+  
+  /* Adjust frame content to account for fixed bottom elements */
+  .frame-content {
+    bottom: 60px; /* Account for bottom border height */
+    position: absolute;
+  }
+  
+  @media (max-width: 480px) {
+    .frame-content {
+      bottom: 30px; /* Account for smaller bottom border height */
+    }
+  }
+}
+
+/* Enhanced mobile viewport handling for Safari and Chrome */
+@media screen and (max-width: 768px) {
+  /* Force the container to use dynamic viewport height */
+  .kids-frame-container {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+  }
+  
+  /* Ensure bottom elements are always visible */
+  .bottom-border,
+  .bottom-left,
+  .bottom-right {
+    position: fixed !important;
+    bottom: 0 !important;
+  }
+  
+  /* Adjust content area to prevent overlap */
+  .frame-content {
+    bottom: 60px !important;
+    position: absolute !important;
+  }
+  
+  /* Ensure menu indicator is always accessible */
+  .menu-indicator {
+    position: fixed !important;
+    bottom: 12px !important;
+    right: 12px !important;
+    z-index: 1022 !important;
+  }
+  
+  @media (max-width: 480px) {
+    .frame-content {
+      bottom: 30px !important;
+    }
+    
+    .menu-indicator {
+      bottom: 8px !important;
+      right: 8px !important;
+    }
   }
 }
