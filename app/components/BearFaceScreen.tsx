@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { getGlobalAudioContext, ensureAudioContextRunning } from '../utils/audioUtils'
+import { getGlobalAudioContext, ensureAudioContextRunning, unlockAudio } from '../utils/audioUtils'
 import FrameMenu from './FrameMenu'
 
 interface BearFaceScreenProps {
@@ -52,8 +52,9 @@ export default function BearFaceScreen({ onBackToMenu }: BearFaceScreenProps): R
     const itemIdRef = useRef(0)
     const containerRef = useRef<HTMLDivElement>(null)
 
-    const initAudio = () => {
-        // Use global audio context
+    const initAudio = async () => {
+        // Use global audio context and ensure it's unlocked
+        await unlockAudio()
         return getGlobalAudioContext()
     }
 
@@ -106,8 +107,8 @@ export default function BearFaceScreen({ onBackToMenu }: BearFaceScreenProps): R
         }, 3000)
     }, [])
 
-    const handleKeyPress = useCallback((event: KeyboardEvent) => {
-        initAudio()
+    const handleKeyPress = useCallback(async (event: KeyboardEvent) => {
+        await initAudio()
 
         // Check for Ctrl+K combination
         if (event.ctrlKey && event.key.toLowerCase() === 'k') {
@@ -149,8 +150,8 @@ export default function BearFaceScreen({ onBackToMenu }: BearFaceScreenProps): R
         setTimeout(() => setKeyPressed(''), 1000)
     }, [onBackToMenu, createFloatingItem])
 
-    const handleTouch = useCallback(() => {
-        initAudio()
+    const handleTouch = useCallback(async () => {
+        await initAudio()
 
         setKeyPressed('TAP!')
 

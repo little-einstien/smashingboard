@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useGesture } from '@use-gesture/react'
 import type { Category } from '../page'
 import FrameMenu from './FrameMenu'
-import { getGlobalAudioContext, ensureAudioContextRunning } from '../utils/audioUtils'
+import { getGlobalAudioContext, ensureAudioContextRunning, unlockAudio } from '../utils/audioUtils'
 
 interface GameAreaProps {
     category: Category
@@ -176,8 +176,9 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
         return position
     }
 
-    const initAudio = () => {
-        // Use global audio context
+    const initAudio = async () => {
+        // Use global audio context and ensure it's unlocked
+        await unlockAudio()
         return getGlobalAudioContext()
     }
 
@@ -302,9 +303,9 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
         }, 3000)
     }, [])
 
-    const handleKeyPress = useCallback((event: KeyboardEvent) => {
+    const handleKeyPress = useCallback(async (event: KeyboardEvent) => {
         // Initialize audio on first interaction
-        initAudio()
+        await initAudio()
 
         // Check for Ctrl+K combination
         if (event.ctrlKey && event.key.toLowerCase() === 'k') {
@@ -363,9 +364,9 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
         setTimeout(() => setKeyPressed(''), 1000)
     }, [data.items.length, onBackToMenu, settings, createCharacterInstance, getCharacterClass])
 
-    const handleTouch = useCallback((event?: any) => {
+    const handleTouch = useCallback(async (event?: any) => {
         // Initialize audio on first interaction
-        initAudio()
+        await initAudio()
 
         // Prevent event bubbling and default behavior
         if (event) {
