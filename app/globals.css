@@ -4,6 +4,43 @@
   box-sizing: border-box;
 }
 
+/* iOS 18 and iPhone 16 Pro Max specific fixes */
+@supports (-webkit-touch-callout: none) {
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  button, [role="button"], .category-card, .menu-indicator, .animation-area {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    min-height: 44px; /* Apple's minimum touch target recommendation */
+    min-width: 44px;
+  }
+}
+
+/* iPhone 16 Pro Max viewport fixes */
+@media screen and (device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) {
+  .animation-area {
+    margin: 10px; /* Add margin to avoid edge touch rejection */
+    min-height: calc(100vh - 200px);
+  }
+  
+  .category-card {
+    margin: 5px;
+    padding: 15px;
+  }
+  
+  .menu-indicator {
+    margin: 10px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
 body {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   background: #f0f8ff;
@@ -15,6 +52,7 @@ body {
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%; /* Prevent text scaling issues */
 }
 
 /* Hide cursor only in game area */
@@ -420,8 +458,11 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  pointer-events: none;
+  pointer-events: auto; /* Enable pointer events for touch */
   z-index: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .character {
@@ -1534,16 +1575,24 @@ body {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    min-height: 60vh; /* Ensure large enough touch target */
   }
   
   .category-card {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    min-height: 80px; /* Ensure adequate touch target size */
+    padding: 12px;
   }
   
   .menu-indicator {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    min-width: 44px; /* iOS recommended minimum touch target */
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .exit-hint {

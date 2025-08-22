@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useGesture } from '@use-gesture/react'
 import type { Category } from '../page'
 import FrameMenu from './FrameMenu'
 
@@ -365,10 +366,16 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
         setTimeout(() => setKeyPressed(''), 1000)
     }, [isAudioInitialized, data.items.length, onBackToMenu, settings, createCharacterInstance, getCharacterClass])
 
-    const handleTouch = useCallback(() => {
+    const handleTouch = useCallback((event?: any) => {
         // Initialize audio on first interaction
         if (!isAudioInitialized) {
             initAudio()
+        }
+
+        // Prevent event bubbling and default behavior
+        if (event) {
+            event.preventDefault()
+            event.stopPropagation()
         }
 
         // Get random item from current category
@@ -467,10 +474,17 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
             <div
                 className="animation-area"
                 ref={animationAreaRef}
-                onClick={handleTouch}
-                onTouchStart={handleTouch}
-                onTouchEnd={(e) => e.preventDefault()}
-                style={{ touchAction: 'manipulation' }}
+                {...useGesture({
+                    onPointerDown: ({ event }) => {
+                        handleTouch(event)
+                    }
+                })()}
+                style={{ 
+                    touchAction: 'manipulation',
+                    cursor: 'pointer',
+                    userSelect: 'none',
+                    WebkitTapHighlightColor: 'transparent'
+                }}
             >
                 {/* Main Character with Backdrop */}
                 <div

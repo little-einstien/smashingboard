@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useGesture } from '@use-gesture/react'
 
 interface KidsFrameProps {
   children: React.ReactNode
@@ -24,22 +25,18 @@ export default function KidsFrame({ children, frameMenu, isGameActive = false }:
       {isGameActive && (
         <div className="frame-corner bottom-right interactive-corner">
           <div 
-            className="menu-indicator" 
-            onClick={() => {
-              // Trigger menu toggle
-              const event = new CustomEvent('frameMenuToggle');
-              window.dispatchEvent(event);
-            }}
-            onTouchStart={() => {
-              // Trigger menu toggle on touch start for better mobile response
-              const event = new CustomEvent('frameMenuToggle');
-              window.dispatchEvent(event);
-            }}
-            onTouchEnd={(e) => e.preventDefault()}
+            className="menu-indicator"
+            {...useGesture({
+              onPointerDown: () => {
+                const event = new CustomEvent('frameMenuToggle');
+                window.dispatchEvent(event);
+              }
+            })()}
             style={{ 
               touchAction: 'manipulation',
               cursor: 'pointer',
-              userSelect: 'none'
+              userSelect: 'none',
+              WebkitTapHighlightColor: 'transparent'
             }}
           >⚙️</div>
         </div>

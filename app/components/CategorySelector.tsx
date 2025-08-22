@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { useGesture } from '@use-gesture/react'
 import type { Category } from '../page'
 
 interface CategorySelectorProps {
@@ -46,6 +47,13 @@ const categories = [
 ]
 
 export default function CategorySelector({ onCategorySelect }: CategorySelectorProps): React.JSX.Element {
+  const handleCategorySelect = (categoryId: Category) => {
+    // Add a small delay to ensure the touch event is properly processed
+    setTimeout(() => {
+      onCategorySelect(categoryId)
+    }, 100)
+  }
+
   return (
     <div className="landing-container">
       {/* Header Section */}
@@ -66,23 +74,33 @@ export default function CategorySelector({ onCategorySelect }: CategorySelectorP
       <div className="categories-section">
         <div className="section-title">Choose Your Adventure!</div>
         <div className="categories-grid">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              className="category-card"
-              onClick={() => onCategorySelect(category.id)}
-              onTouchEnd={(e) => e.preventDefault()}
-              style={{ 
-                '--category-color': category.color,
-                touchAction: 'manipulation'
-              } as React.CSSProperties}
-            >
-              <div className="category-emoji">{category.emoji}</div>
-              <div className="category-name">{category.name}</div>
-              <div className="category-description">{category.description}</div>
-              <div className="category-glow"></div>
-            </button>
-          ))}
+          {categories.map((category) => {
+            const bind = useGesture({
+              onPointerDown: () => {
+                handleCategorySelect(category.id)
+              }
+            })
+
+            return (
+              <button
+                key={category.id}
+                className="category-card"
+                {...bind()}
+                style={{ 
+                  '--category-color': category.color,
+                  touchAction: 'manipulation',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                  WebkitTapHighlightColor: 'transparent'
+                } as React.CSSProperties}
+              >
+                <div className="category-emoji">{category.emoji}</div>
+                <div className="category-name">{category.name}</div>
+                <div className="category-description">{category.description}</div>
+                <div className="category-glow"></div>
+              </button>
+            )
+          })}
         </div>
       </div>
 
