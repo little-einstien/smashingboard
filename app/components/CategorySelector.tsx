@@ -52,7 +52,7 @@ export default function CategorySelector({ onCategorySelect }: CategorySelectorP
       <div className="landing-header">
         <div className="logo-container">
           <img 
-            src="/assets/logo.png" 
+            src="./assets/logo.png" 
             alt="Baby Keyboard Logo" 
             className="landing-logo"
           />
