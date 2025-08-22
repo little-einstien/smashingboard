@@ -37,7 +37,7 @@ const categoryData = {
         colors: ['#ff6b6b', '#feca57', '#fd79a8', '#96ceb4', '#4ecdc4', '#fdcb6e']
     },
     numbers: {
-        items: ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', '0️⃣'],
+        items: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '0'],
         colors: ['#6c5ce7', '#a29bfe', '#fd79a8', '#fdcb6e', '#4ecdc4', '#45b7d1']
     },
     languages: {
@@ -469,6 +469,8 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
                 ref={animationAreaRef}
                 onClick={handleTouch}
                 onTouchStart={handleTouch}
+                onTouchEnd={(e) => e.preventDefault()}
+                style={{ touchAction: 'manipulation' }}
             >
                 {/* Main Character with Backdrop */}
                 <div

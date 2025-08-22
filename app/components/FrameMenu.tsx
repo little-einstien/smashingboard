@@ -66,6 +66,8 @@ export default function FrameMenu({
             <div
                 className="frame-menu-button"
                 onClick={() => setIsOpen(!isOpen)}
+                onTouchStart={() => setIsOpen(!isOpen)}
+                style={{ touchAction: 'manipulation' }}
             >
                 {/* Button is invisible - the corner itself is the clickable area */}
             </div>

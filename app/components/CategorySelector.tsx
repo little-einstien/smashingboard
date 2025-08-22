@@ -71,7 +71,11 @@ export default function CategorySelector({ onCategorySelect }: CategorySelectorP
               key={category.id}
               className="category-card"
               onClick={() => onCategorySelect(category.id)}
-              style={{ '--category-color': category.color } as React.CSSProperties}
+              onTouchEnd={(e) => e.preventDefault()}
+              style={{ 
+                '--category-color': category.color,
+                touchAction: 'manipulation'
+              } as React.CSSProperties}
             >
               <div className="category-emoji">{category.emoji}</div>
               <div className="category-name">{category.name}</div>

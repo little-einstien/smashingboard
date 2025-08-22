@@ -23,11 +23,25 @@ export default function KidsFrame({ children, frameMenu, isGameActive = false }:
       </div>
       {isGameActive && (
         <div className="frame-corner bottom-right interactive-corner">
-          <div className="menu-indicator" onClick={() => {
-            // Trigger menu toggle
-            const event = new CustomEvent('frameMenuToggle');
-            window.dispatchEvent(event);
-          }}>⚙️</div>
+          <div 
+            className="menu-indicator" 
+            onClick={() => {
+              // Trigger menu toggle
+              const event = new CustomEvent('frameMenuToggle');
+              window.dispatchEvent(event);
+            }}
+            onTouchStart={() => {
+              // Trigger menu toggle on touch start for better mobile response
+              const event = new CustomEvent('frameMenuToggle');
+              window.dispatchEvent(event);
+            }}
+            onTouchEnd={(e) => e.preventDefault()}
+            style={{ 
+              touchAction: 'manipulation',
+              cursor: 'pointer',
+              userSelect: 'none'
+            }}
+          >⚙️</div>
         </div>
       )}
 

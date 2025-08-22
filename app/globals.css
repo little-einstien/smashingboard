@@ -856,7 +856,9 @@ body {
   .exit-hint {
     bottom: 5px;
     left: 5px;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+    padding: 0.3rem 0.5rem;
+    max-width: 90%;
   }
 
   .back-button {
@@ -1435,49 +1437,6 @@ body {
   }
   
   .top-border, .bottom-border {
-    height: 50px;
-    padding: 0 60px;
-  }
-  
-  .left-border, .right-border {
-    width: 50px;
-    top: 50px;
-    bottom: 50px;
-  }
-  
-  .frame-corner {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .corner-decoration {
-    font-size: 1.5rem;
-  }
-  
-  .border-decoration {
-    font-size: 1.2rem;
-  }
-  
-  .frame-content {
-    top: 50px;
-    left: 50px;
-    right: 50px;
-    bottom: 50px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  
-  .floating-element {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .kids-frame-container {
-    overflow: hidden;
-  }
-  
-  .top-border, .bottom-border {
     height: 40px;
     padding: 0 50px;
   }
@@ -1508,6 +1467,104 @@ body {
     bottom: 40px;
     overflow-y: auto;
     overflow-x: hidden;
+  }
+  
+  .floating-element {
+    font-size: 1rem;
+  }
+  
+  /* Improve touch handling for mobile */
+  .animation-area {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+  
+  .category-card {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .menu-indicator {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  .kids-frame-container {
+    overflow: hidden;
+  }
+  
+  .top-border, .bottom-border {
+    height: 30px;
+    padding: 0 40px;
+  }
+  
+  .left-border, .right-border {
+    width: 30px;
+    top: 30px;
+    bottom: 30px;
+  }
+  
+  .frame-corner {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .corner-decoration {
+    font-size: 1rem;
+  }
+  
+  .border-decoration {
+    font-size: 0.9rem;
+  }
+  
+  .frame-content {
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  /* Additional touch improvements for very small screens */
+  .animation-area {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+  
+  .category-card {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .menu-indicator {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .exit-hint {
+    bottom: 3px;
+    left: 3px;
+    font-size: 0.5rem;
+    padding: 0.2rem 0.4rem;
+    max-width: 85%;
+  }
+  
+  /* Additional mobile menu improvements */
+  .menu-indicator {
+    bottom: 6px;
+    right: 6px;
+    font-size: 1.8rem;
+  }
+  
+  .frame-menu-options {
+    min-width: 160px;
+    bottom: 60px;
+    right: 3px;
   }
 }
 
@@ -1771,6 +1828,7 @@ body {
   .frame-menu-options {
     min-width: 180px;
     bottom: 70px;
+    right: 5px;
   }
   
   .background-options {
@@ -1788,5 +1846,19 @@ body {
   
   .settings-char {
     font-size: 0.7rem;
+  }
+  
+  /* Improve menu indicator positioning and touch handling */
+  .menu-indicator {
+    bottom: 8px;
+    right: 8px;
+    font-size: 2rem;
+    z-index: 1022;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .frame-menu-container {
+    z-index: 1021;
   }
 }
