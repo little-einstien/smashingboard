@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Keyboard Logo - Integration Test</title>
+    <link rel="stylesheet" href="app/components/baby-keyboard-logo-responsive.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .test-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+        }
+        
+        .test-card h3 {
+            margin-top: 0;
+            color: #495057;
+            font-size: 18px;
+        }
+        
+        .test-card .description {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .navbar {
+            background: #343a40;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: -30px -30px 30px -30px;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .navbar .logo {
+            height: 40px;
+        }
+        
+        .navbar .brand {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(45deg, #87CEEB, #98D8E8);
+            margin: 30px -30px;
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .hero-section .logo {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+        
+        .sidebar .logo {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .mobile-preview {
+            max-width: 375px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 25px;
+            padding: 20px;
+            color: white;
+        }
+        
+        .mobile-preview .status-bar {
+            height: 20px;
+            background: linear-gradient(90deg, #333, #555);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-preview .app-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-preview .app-header .logo {
+            width: 32px;
+            height: 24px;
+        }
+        
+        .performance-monitor {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            min-width: 200px;
+        }
+        
+        .size-comparison {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .size-item {
+            text-align: center;
+        }
+        
+        .size-item .label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .size-item .dimensions {
+            font-size: 10px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                transform: none;
+                margin: 20px 0;
+            }
+            
+            .test-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <!-- Navigation Bar Test -->
+        <div class="navbar">
+            <object class="logo baby-keyboard-logo--small" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+            <div class="brand">Baby Keyboard Smasher</div>
+            <div style="margin-left: auto; font-size: 14px;">Navigation Test</div>
+        </div>
+        
+        <h1>🧪 Baby Keyboard Logo - Integration Test Suite</h1>
+        <p>This page tests the responsive baby keyboard logo in various real-world integration scenarios.</p>
+        
+        <!-- Hero Section Test -->
+        <div class="hero-section">
+            <object class="logo baby-keyboard-logo--large" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+            <h2>Welcome to Baby Keyboard Smasher!</h2>
+            <p>The most fun way for babies to explore keyboards safely</p>
+        </div>
+        
+        <!-- Grid Layout Tests -->
+        <div class="test-grid">
+            <div class="test-card">
+                <h3>Card Layout</h3>
+                <div class="description">Logo in a card-based layout</div>
+                <object class="baby-keyboard-logo--medium" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+            </div>
+            
+            <div class="test-card">
+                <h3>Feature Card</h3>
+                <div class="description">Logo as a feature icon</div>
+                <object class="baby-keyboard-logo--medium" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                <p>Safe keyboard exploration for babies</p>
+            </div>
+            
+            <div class="test-card">
+                <h3>Product Card</h3>
+                <div class="description">Logo in product showcase</div>
+                <object class="baby-keyboard-logo--medium" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                <p>Educational and entertaining</p>
+            </div>
+            
+            <div class="test-card">
+                <h3>Info Card</h3>
+                <div class="description">Logo with information</div>
+                <object class="baby-keyboard-logo--medium" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                <p>Designed for safety and fun</p>
+            </div>
+        </div>
+        
+        <!-- Size Comparison Test -->
+        <div class="test-card">
+            <h3>Size Comparison Test</h3>
+            <div class="description">Logo at different sizes side by side</div>
+            <div class="size-comparison">
+                <div class="size-item">
+                    <div class="label">Tiny</div>
+                    <object style="width: 20px; height: 15px;" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                    <div class="dimensions">20×15px</div>
+                </div>
+                <div class="size-item">
+                    <div class="label">Small</div>
+                    <object class="baby-keyboard-logo--small" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                    <div class="dimensions">64×48px</div>
+                </div>
+                <div class="size-item">
+                    <div class="label">Medium</div>
+                    <object class="baby-keyboard-logo--medium" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                    <div class="dimensions">128×96px</div>
+                </div>
+                <div class="size-item">
+                    <div class="label">Large</div>
+                    <object class="baby-keyboard-logo--large" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                    <div class="dimensions">256×192px</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Preview Test -->
+        <div class="test-card">
+            <h3>Mobile App Preview</h3>
+            <div class="description">Logo in mobile app context</div>
+            <div class="mobile-preview">
+                <div class="status-bar"></div>
+                <div class="app-header">
+                    <object class="logo" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                    <div>
+                        <div style="font-weight: bold;">Baby Keyboard</div>
+                        <div style="font-size: 12px; opacity: 0.7;">Tap to play!</div>
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <object style="width: 120px; height: 90px;" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                    <p style="margin-top: 15px; font-size: 14px;">Ready to start smashing?</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Responsive Container Test -->
+        <div class="test-card">
+            <h3>Responsive Container Test</h3>
+            <div class="description">Logo adapting to container size</div>
+            <div style="resize: both; overflow: auto; border: 2px dashed #ccc; padding: 20px; min-width: 100px; min-height: 80px; width: 300px; height: 200px;">
+                <div style="text-align: center; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <object style="max-width: 100%; max-height: 100%; width: auto; height: auto;" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                </div>
+                <div style="position: absolute; bottom: 5px; right: 5px; font-size: 10px; color: #999;">Resize me!</div>
+            </div>
+        </div>
+        
+        <!-- Flexbox Test -->
+        <div class="test-card">
+            <h3>Flexbox Layout Test</h3>
+            <div class="description">Logo in flexible layouts</div>
+            <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 4px;">
+                <object class="baby-keyboard-logo--small" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+                <div style="flex: 1;">
+                    <h4 style="margin: 0 0 5px 0;">Baby Keyboard Smasher</h4>
+                    <p style="margin: 0; font-size: 14px; color: #666;">Safe keyboard fun for little ones</p>
+                </div>
+                <button style="padding: 8px 16px; background: #87CEEB; border: none; border-radius: 4px; color: white; cursor: pointer;">Play Now</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Sidebar Test -->
+    <div class="sidebar">
+        <object class="logo" data="app/components/BabyKeyboardLogo.svg" type="image/svg+xml"></object>
+        <div style="font-size: 12px; color: #666;">Quick Access</div>
+    </div>
+    
+    <!-- Performance Monitor -->
+    <div class="performance-monitor" id="perfMonitor">
+        <div>Performance Monitor</div>
+        <div id="loadTime">Load Time: Calculating...</div>
+        <div id="svgCount">SVG Count: 0</div>
+        <div id="memoryUsage">Memory: N/A</div>
+        <div id="renderTime">Render Time: N/A</div>
+    </div>
+    
+    <script>
+        // Performance monitoring
+        const startTime = performance.now();
+        let svgLoadCount = 0;
+        let totalSvgs = 0;
+        
+        // Count total SVGs
+        totalSvgs = document.querySelectorAll('object[type="image/svg+xml"]').length;
+        document.getElementById('svgCount').textContent = `SVG Count: ${totalSvgs}`;
+        
+        // Monitor SVG loading
+        document.querySelectorAll('object[type="image/svg+xml"]').forEach((obj, index) => {
+            obj.addEventListener('load', () => {
+                svgLoadCount++;
+                console.log(`SVG ${index + 1} loaded (${svgLoadCount}/${totalSvgs})`);
+                
+                if (svgLoadCount === totalSvgs) {
+                    const loadTime = performance.now() - startTime;
+                    document.getElementById('loadTime').textContent = `Load Time: ${loadTime.toFixed(2)}ms`;
+                    document.getElementById('renderTime').textContent = `Render Time: ${loadTime.toFixed(2)}ms`;
+                }
+            });
+            
+            obj.addEventListener('error', (e) => {
+                console.error(`SVG ${index + 1} failed to load:`, e);
+                obj.style.border = '2px solid red';
+                obj.style.background = '#ffe6e6';
+            });
+        });
+        
+        // Memory usage (if available)
+        if (performance.memory) {
+            const updateMemory = () => {
+                const memory = (performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+                document.getElementById('memoryUsage').textContent = `Memory: ${memory}MB`;
+            };
+            updateMemory();
+            setInterval(updateMemory, 2000);
+        }
+        
+        // Viewport size monitoring
+        const updateViewport = () => {
+            console.log(`Viewport: ${window.innerWidth}×${window.innerHeight}`);
+        };
+        
+        window.addEventListener('resize', updateViewport);
+        updateViewport();
+        
+        // Test responsive behavior
+        window.addEventListener('load', () => {
+            console.log('🧪 Integration test loaded successfully');
+            console.log(`📊 Total SVGs: ${totalSvgs}`);
+            console.log(`⏱️ Load time: ${(performance.now() - startTime).toFixed(2)}ms`);
+            
+            // Test different viewport sizes programmatically
+            const testViewports = [
+                { width: 320, height: 568, name: 'Mobile Portrait' },
+                { width: 768, height: 1024, name: 'Tablet Portrait' },
+                { width: 1024, height: 768, name: 'Tablet Landscape' },
+                { width: 1920, height: 1080, name: 'Desktop' }
+            ];
+            
+            console.log('📱 Viewport test results:');
+            testViewports.forEach(viewport => {
+                console.log(`  ${viewport.name}: ${viewport.width}×${viewport.height}`);
+            });
+        });
+        
+        // Accessibility test
+        document.querySelectorAll('object[type="image/svg+xml"]').forEach((obj, index) => {
+            if (!obj.getAttribute('aria-label') && !obj.getAttribute('alt')) {
+                console.warn(`SVG ${index + 1} missing accessibility attributes`);
+            }
+        });
+    </script>
+</body>
+</html>

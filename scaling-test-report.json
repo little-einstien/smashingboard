@@ -1,0 +1,158 @@
+{
+  "timestamp": "2025-08-21T14:07:08.969Z",
+  "testResults": {
+    "structure": {
+      "hasViewBox": true,
+      "hasPreserveAspectRatio": true,
+      "hasWidthHeight": true,
+      "hasAriaLabels": true,
+      "hasTitle": true,
+      "hasDescription": true,
+      "hasResponsiveClass": true
+    },
+    "readability": {
+      "textAnalysis": {
+        "totalTextElements": 27,
+        "fontSizes": [],
+        "hasBoldText": false,
+        "smallestFontSize": null,
+        "largestFontSize": null
+      },
+      "readabilityScores": [
+        {
+          "size": "minimum",
+          "dimensions": "16x12",
+          "scaleFactor": "0.080",
+          "effectiveFontSize": "Infinity",
+          "readable": true,
+          "score": "excellent"
+        },
+        {
+          "size": "small-icon",
+          "dimensions": "32x24",
+          "scaleFactor": "0.160",
+          "effectiveFontSize": "Infinity",
+          "readable": true,
+          "score": "excellent"
+        },
+        {
+          "size": "medium-icon",
+          "dimensions": "64x48",
+          "scaleFactor": "0.320",
+          "effectiveFontSize": "Infinity",
+          "readable": true,
+          "score": "excellent"
+        },
+        {
+          "size": "large-icon",
+          "dimensions": "128x96",
+          "scaleFactor": "0.640",
+          "effectiveFontSize": "Infinity",
+          "readable": true,
+          "score": "excellent"
+        },
+        {
+          "size": "header",
+          "dimensions": "256x192",
+          "scaleFactor": "1.280",
+          "effectiveFontSize": "Infinity",
+          "readable": true,
+          "score": "excellent"
+        },
+        {
+          "size": "maximum",
+          "dimensions": "500x375",
+          "scaleFactor": "2.500",
+          "effectiveFontSize": "Infinity",
+          "readable": true,
+          "score": "excellent"
+        }
+      ]
+    },
+    "scaling": {
+      "originalAspectRatio": "1.333",
+      "scalingTests": [
+        {
+          "size": "minimum",
+          "dimensions": "16x12",
+          "aspectRatio": "1.333",
+          "aspectRatioDiff": "0.000",
+          "maintainsProportions": true
+        },
+        {
+          "size": "small-icon",
+          "dimensions": "32x24",
+          "aspectRatio": "1.333",
+          "aspectRatioDiff": "0.000",
+          "maintainsProportions": true
+        },
+        {
+          "size": "medium-icon",
+          "dimensions": "64x48",
+          "aspectRatio": "1.333",
+          "aspectRatioDiff": "0.000",
+          "maintainsProportions": true
+        },
+        {
+          "size": "large-icon",
+          "dimensions": "128x96",
+          "aspectRatio": "1.333",
+          "aspectRatioDiff": "0.000",
+          "maintainsProportions": true
+        },
+        {
+          "size": "header",
+          "dimensions": "256x192",
+          "aspectRatio": "1.333",
+          "aspectRatioDiff": "0.000",
+          "maintainsProportions": true
+        },
+        {
+          "size": "maximum",
+          "dimensions": "500x375",
+          "aspectRatio": "1.333",
+          "aspectRatioDiff": "0.000",
+          "maintainsProportions": true
+        }
+      ]
+    },
+    "containers": [
+      {
+        "containerName": "small-container",
+        "containerWidth": 100,
+        "calculatedHeight": 75,
+        "scaleFactor": "0.500",
+        "fitsInContainer": true
+      },
+      {
+        "containerName": "medium-container",
+        "containerWidth": 200,
+        "calculatedHeight": 150,
+        "scaleFactor": "1.000",
+        "fitsInContainer": true
+      },
+      {
+        "containerName": "large-container",
+        "containerWidth": 400,
+        "calculatedHeight": 300,
+        "scaleFactor": "2.000",
+        "fitsInContainer": true
+      },
+      {
+        "containerName": "xlarge-container",
+        "containerWidth": 600,
+        "calculatedHeight": 450,
+        "scaleFactor": "3.000",
+        "fitsInContainer": true
+      }
+    ]
+  },
+  "summary": {
+    "structureTests": 7,
+    "totalStructureTests": 7,
+    "readableAtAllSizes": true,
+    "maintainsProportions": true,
+    "responsiveContainers": true,
+    "overallScore": "1.00"
+  }
+}

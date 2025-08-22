@@ -1,0 +1,231 @@
+/* Baby Keyboard Logo - Responsive Styles */
+
+.baby-keyboard-logo {
+  /* Ensure SVG scales properly */
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  
+  /* Maintain aspect ratio */
+  aspect-ratio: 200 / 150;
+  
+  /* Smooth scaling transitions */
+  transition: all 0.3s ease;
+  
+  /* Prevent distortion */
+  object-fit: contain;
+  
+  /* Ensure crisp rendering at all sizes */
+  shape-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
+}
+
+/* Size variants for different use cases */
+.baby-keyboard-logo--small {
+  max-width: 64px;
+  max-height: 48px;
+}
+
+.baby-keyboard-logo--medium {
+  max-width: 128px;
+  max-height: 96px;
+}
+
+.baby-keyboard-logo--large {
+  max-width: 256px;
+  max-height: 192px;
+}
+
+.baby-keyboard-logo--xlarge {
+  max-width: 500px;
+  max-height: 375px;
+}
+
+/* Container-based responsive behavior */
+.logo-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  max-width: 200px; /* Default max width */
+}
+
+.logo-container .baby-keyboard-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 480px) {
+  .baby-keyboard-logo {
+    max-width: 120px;
+  }
+  
+  /* Ensure text remains readable on small screens */
+  .baby-keyboard-logo text {
+    font-size: max(6px, 0.8vw);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .baby-keyboard-logo {
+    max-width: 180px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .baby-keyboard-logo {
+    max-width: 240px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .baby-keyboard-logo {
+    max-width: 300px;
+  }
+}
+
+/* High DPI display optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .baby-keyboard-logo {
+    /* Ensure crisp rendering on retina displays */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Print styles */
+@media print {
+  .baby-keyboard-logo {
+    max-width: 2in;
+    max-height: 1.5in;
+    /* Ensure good print quality */
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+/* Dark mode considerations */
+@media (prefers-color-scheme: dark) {
+  .baby-keyboard-logo {
+    /* Slight brightness adjustment for dark backgrounds */
+    filter: brightness(1.1);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .baby-keyboard-logo {
+    transition: none;
+  }
+}
+
+/* Container query support (future-proofing) */
+@supports (container-type: inline-size) {
+  .logo-container {
+    container-type: inline-size;
+  }
+  
+  @container (max-width: 100px) {
+    .baby-keyboard-logo {
+      /* Hide complex details at very small sizes */
+      --detail-opacity: 0.5;
+    }
+  }
+  
+  @container (min-width: 300px) {
+    .baby-keyboard-logo {
+      /* Show full detail at larger sizes */
+      --detail-opacity: 1;
+    }
+  }
+}
+
+/* Accessibility enhancements */
+@media (prefers-reduced-motion: no-preference) {
+  .baby-keyboard-logo:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.baby-keyboard-logo:focus {
+  outline: 2px solid #87CEEB;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Loading state */
+.baby-keyboard-logo[data-loading="true"] {
+  opacity: 0.5;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+/* Error state */
+.baby-keyboard-logo[data-error="true"] {
+  border: 2px dashed #ff6b6b;
+  opacity: 0.7;
+}
+
+/* Utility classes for specific contexts */
+.baby-keyboard-logo--icon {
+  width: 24px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+.baby-keyboard-logo--header {
+  width: 150px;
+  height: auto;
+  max-height: 60px;
+}
+
+.baby-keyboard-logo--hero {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.baby-keyboard-logo--inline {
+  display: inline-block;
+  width: 1.2em;
+  height: 0.9em;
+  vertical-align: baseline;
+}
+
+/* Grid and flexbox integration */
+.logo-grid-item .baby-keyboard-logo,
+.logo-flex-item .baby-keyboard-logo {
+  width: 100%;
+  height: auto;
+  max-width: none; /* Let container control size */
+}
+
+/* Ensure proper scaling in CSS Grid */
+.logo-grid-container {
+  display: grid;
+  place-items: center;
+}
+
+.logo-grid-container .baby-keyboard-logo {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Flexbox centering */
+.logo-flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-flex-container .baby-keyboard-logo {
+  flex-shrink: 0;
+}

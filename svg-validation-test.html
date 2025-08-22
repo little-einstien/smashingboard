@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Validation Test</title>
+</head>
+<body>
+    <h1>Baby Keyboard Logo SVG Validation Test</h1>
+    <div style="border: 1px solid #ccc; padding: 20px; margin: 20px 0;">
+        <h2>Original SVG (200x150)</h2>
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logo-title" aria-describedby="logo-desc" class="baby-keyboard-logo" preserveAspectRatio="xMidYMid meet" width="200" height="150">
+          <title id="logo-title">Baby Keyboard Smashing Game Logo</title>
+          <desc id="logo-desc">A cheerful cartoon baby with brown hair and blue clothing sits above a computer keyboard. The baby has a big smile, rosy cheeks, and is reaching down with both hands toward the keyboard keys. Two keys (F and J) appear pressed down with sparkle effects and motion lines around the baby's hands, suggesting playful keyboard interaction. The logo uses bright, child-friendly colors with good contrast for visibility.</desc>
+          
+          <defs>
+            <linearGradient id="skin-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#FFE4C4"/>
+              <stop offset="1" stop-color="#FFD4B3"/>
+            </linearGradient>
+            
+            <radialGradient id="cheek-gradient">
+              <stop offset="0" stop-color="#FFB6C1" stop-opacity=".8"/>
+              <stop offset="1" stop-color="#FFB6C1" stop-opacity=".3"/>
+            </radialGradient>
+            
+            <linearGradient id="clothes-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#98D8E8"/>
+              <stop offset="1" stop-color="#87CEEB"/>
+            </linearGradient>
+            
+            <linearGradient id="key-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#FFF"/>
+              <stop offset="1" stop-color="#F5F5F5"/>
+            </linearGradient>
+            
+            <linearGradient id="key-pressed-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#E8E8E8"/>
+              <stop offset="1" stop-color="#E0E0E0"/>
+            </linearGradient>
+            
+            <linearGradient id="keyboard-base-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3C3C3C"/>
+              <stop offset="1" stop-color="#2C2C2C"/>
+            </linearGradient>
+            
+            <radialGradient id="sparkle-gradient">
+              <stop offset="0" stop-color="#FFD700"/>
+              <stop offset="1" stop-color="#FFA500" stop-opacity=".6"/>
+            </radialGradient>
+            
+            <!-- CSS for responsive text sizing -->
+            <style>
+              <![CDATA[
+                .key-text {
+                  font-family: Arial, sans-serif;
+                  font-weight: bold;
+                  text-anchor: middle;
+                  fill: #333;
+                  font-size: 6px;
+                }
+                
+                .spacebar-text {
+                  font-family: Arial, sans-serif;
+                  font-weight: bold;
+                  text-anchor: middle;
+                  fill: #666;
+                  font-size: 5px;
+                }
+                
+                /* Scale text based on SVG size */
+                @media (max-width: 64px) {
+                  .key-text { font-size: 8px; }
+                  .spacebar-text { font-size: 7px; }
+                }
+                
+                @media (max-width: 32px) {
+                  .key-text { font-size: 12px; }
+                  .spacebar-text { font-size: 10px; }
+                }
+              ]]>
+            </style>
+          </defs>
+
+          
+          <g id="keyboard" class="keyboard-layer" aria-label="Computer keyboard with QWERTY layout">
+            <rect id="keyboard-base" x="20" y="95" width="160" height="45" rx="8" 
+                  fill="url(#keyboard-base-gradient)" stroke="#1A1A1A"/>
+            
+            <g id="top-row" class="key-row" transform="translate(30,100)">
+              <g class="key"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">Q</text></g>
+              <g class="key" transform="translate(14,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">W</text></g>
+              <g class="key" transform="translate(28,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">E</text></g>
+              <g class="key" transform="translate(42,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">R</text></g>
+              <g class="key" transform="translate(56,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">T</text></g>
+              <g class="key" transform="translate(70,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">Y</text></g>
+              <g class="key" transform="translate(84,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">U</text></g>
+              <g class="key" transform="translate(98,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">I</text></g>
+              <g class="key" transform="translate(112,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">O</text></g>
+              <g class="key" transform="translate(126,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">P</text></g>
+            </g>
+            
+            <g id="middle-row" class="key-row" transform="translate(37,112)">
+              <g class="key"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">A</text></g>
+              <g class="key" transform="translate(14,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">S</text></g>
+              <g class="key" transform="translate(28,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">D</text></g>
+              <g class="key key-pressed" id="f-key" transform="translate(42,0)" aria-label="F key pressed down"><rect width="12" height="10" rx="2" fill="url(#key-pressed-gradient)" stroke="#C0C0C0" stroke-width=".5"/><text x="6" y="7" class="key-text">F</text></g>
+              <g class="key" transform="translate(56,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">G</text></g>
+              <g class="key" transform="translate(70,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">H</text></g>
+              <g class="key key-pressed" id="j-key" transform="translate(84,0)" aria-label="J key pressed down"><rect width="12" height="10" rx="2" fill="url(#key-pressed-gradient)" stroke="#C0C0C0" stroke-width=".5"/><text x="6" y="7" class="key-text">J</text></g>
+              <g class="key" transform="translate(98,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">K</text></g>
+              <g class="key" transform="translate(112,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">L</text></g>
+            </g>
+            
+            <g id="bottom-row" class="key-row" transform="translate(44,124)">
+              <g class="key"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">Z</text></g>
+              <g class="key" transform="translate(14,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">X</text></g>
+              <g class="key" transform="translate(28,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">C</text></g>
+              <g class="key" transform="translate(42,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">V</text></g>
+              <g class="key" transform="translate(56,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">B</text></g>
+              <g class="key" transform="translate(70,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">N</text></g>
+              <g class="key" transform="translate(84,0)"><rect width="12" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="6" y="7" class="key-text">M</text></g>
+              <g class="key spacebar" transform="translate(98,0)"><rect width="26" height="10" rx="2" fill="url(#key-gradient)" stroke="#D0D0D0" stroke-width=".5"/><text x="13" y="7" class="spacebar-text">SPACE</text></g>
+            </g>
+          </g>
+          
+          <g id="baby" class="baby-character" aria-label="Happy baby character with brown hair, smiling face, and blue clothing">
+            <circle id="baby-head" cx="100" cy="40" r="25" fill="url(#skin-gradient)" stroke="#E6C2A6"/>
+            
+            <path id="baby-hair" d="M80 25Q100 15 120 25Q115 20 100 18Q85 20 80 25" 
+                  fill="#8B4513" stroke="#654321" stroke-width=".5"/>
+            
+            <g id="baby-face" class="facial-features">
+              <circle class="eye" cx="92" cy="35" r="2.5" fill="#333"/>
+              <circle class="eye" cx="108" cy="35" r="2.5" fill="#333"/>
+              <path id="smile" d="M90 48Q100 55 110 48" stroke="#D2691E" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle class="cheek" cx="85" cy="42" r="4" fill="url(#cheek-gradient)"/>
+              <circle class="cheek" cx="115" cy="42" r="4" fill="url(#cheek-gradient)"/>
+            </g>
+            
+            <ellipse id="baby-torso" cx="100" cy="78" rx="18" ry="22" fill="url(#clothes-gradient)" stroke="#6BB6D6"/>
+            
+            <g id="baby-arms" class="limbs">
+              <ellipse class="arm" cx="78" cy="72" rx="6" ry="16" fill="url(#skin-gradient)" stroke="#E6C2A6" stroke-width=".5" transform="rotate(-25 78 72)"/>
+              <ellipse class="arm" cx="122" cy="72" rx="6" ry="16" fill="url(#skin-gradient)" stroke="#E6C2A6" stroke-width=".5" transform="rotate(25 122 72)"/>
+            </g>
+            
+            <g id="baby-hands" class="hands">
+              <circle class="hand" cx="79" cy="117" r="5" fill="url(#skin-gradient)" stroke="#E6C2A6" stroke-width=".5"/>
+              <circle class="hand" cx="135" cy="117" r="5" fill="url(#skin-gradient)" stroke="#E6C2A6" stroke-width=".5"/>
+            </g>
+          </g>
+          
+          <g id="effects" class="visual-effects" aria-label="Motion lines, sparkles, and impact effects showing keyboard interaction">
+            <g id="motion-lines" class="motion-effects">
+              <g class="hand-motion left-hand">
+                <path d="M70 110Q75 108 72 115" stroke="#FFA500" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".8"/>
+                <path d="M68 113Q73 111 70 118" stroke="#FFA500" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".6"/>
+                <path d="M85 110Q82 108 85 115" stroke="#FFA500" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".8"/>
+                <path d="M87 113Q84 111 87 118" stroke="#FFA500" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".6"/>
+              </g>
+              
+              <g class="hand-motion right-hand">
+                <path d="M128 110Q133 108 130 115" stroke="#FFA500" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".8"/>
+                <path d="M130 113Q135 111 132 118" stroke="#FFA500" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".6"/>
+                <path d="M142 110Q139 108 142 115" stroke="#FFA500" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".8"/>
+                <path d="M144 113Q141 111 144 118" stroke="#FFA500" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".6"/>
+              </g>
+            </g>
+            
+            <g id="sparkles" class="sparkle-effects">
+              <g class="key-sparkles f-key">
+                <polygon points="79,105 80,107 82,107 80.5,108.5 81,111 79,109.5 77,111 77.5,108.5 76,107 78,107" fill="url(#sparkle-gradient)" opacity=".9"/>
+                <polygon points="85,108 85.5,109 87,109 86,110 86.5,111.5 85,110.5 83.5,111.5 84,110 83,109 84.5,109" fill="#FFD700" opacity=".7"/>
+                <circle cx="82" cy="104" r="1" fill="#FFA500" opacity=".8"/>
+                <circle cx="76" cy="109" r=".8" fill="#FFD700" opacity=".9"/>
+              </g>
+              
+              <g class="key-sparkles j-key">
+                <polygon points="135,105 136,107 138,107 136.5,108.5 137,111 135,109.5 133,111 133.5,108.5 132,107 134,107" fill="url(#sparkle-gradient)" opacity=".9"/>
+                <polygon points="141,108 141.5,109 143,109 142,110 142.5,111.5 141,110.5 139.5,111.5 140,110 139,109 140.5,109" fill="#FFD700" opacity=".7"/>
+                <circle cx="138" cy="104" r="1" fill="#FFA500" opacity=".8"/>
+                <circle cx="132" cy="109" r=".8" fill="#FFD700" opacity=".9"/>
+              </g>
+              
+              <g class="ambient-sparkles">
+                <circle cx="60" cy="85" r=".8" fill="#FFD700" opacity=".6"/>
+                <circle cx="150" cy="90" r="1" fill="#FFA500" opacity=".5"/>
+                <polygon points="45,70 45.5,71.5 47,71.5 46,72.5 46.5,74 45,73 43.5,74 44,72.5 43,71.5 44.5,71.5" fill="#FFD700" opacity=".4"/>
+                <polygon points="165,75 165.5,76.5 167,76.5 166,77.5 166.5,79 165,78 163.5,79 164,77.5 163,76.5 164.5,76.5" fill="#FFA500" opacity=".4"/>
+              </g>
+            </g>
+            
+            <g id="impact-effects" class="impact-indicators">
+              <g class="key-impact f-key">
+                <line x1="79" y1="112" x2="77" y2="108" stroke="#FF6B35" stroke-width="2" opacity=".7" stroke-linecap="round"/>
+                <line x1="79" y1="112" x2="81" y2="108" stroke="#FF6B35" stroke-width="2" opacity=".7" stroke-linecap="round"/>
+                <line x1="79" y1="112" x2="75" y2="112" stroke="#FF6B35" stroke-width="1.5" opacity=".6" stroke-linecap="round"/>
+                <line x1="79" y1="112" x2="83" y2="112" stroke="#FF6B35" stroke-width="1.5" opacity=".6" stroke-linecap="round"/>
+              </g>
+              
+              <g class="key-impact j-key">
+                <line x1="135" y1="112" x2="133" y2="108" stroke="#FF6B35" stroke-width="2" opacity=".7" stroke-linecap="round"/>
+                <line x1="135" y1="112" x2="137" y2="108" stroke="#FF6B35" stroke-width="2" opacity=".7" stroke-linecap="round"/>
+                <line x1="135" y1="112" x2="131" y2="112" stroke="#FF6B35" stroke-width="1.5" opacity=".6" stroke-linecap="round"/>
+                <line x1="135" y1="112" x2="139" y2="112" stroke="#FF6B35" stroke-width="1.5" opacity=".6" stroke-linecap="round"/>
+              </g>
+            </g>
+            
+            <g id="bounce-effects" class="bounce-indicators">
+              <circle cx="77" cy="115" r="1.5" fill="none" stroke="#87CEEB" opacity=".5"/>
+              <circle cx="81" cy="115" r="2" fill="none" stroke="#87CEEB" stroke-width=".8" opacity=".4"/>
+              <circle cx="133" cy="115" r="1.5" fill="none" stroke="#87CEEB" opacity=".5"/>
+              <circle cx="137" cy="115" r="2" fill="none" stroke="#87CEEB" stroke-width=".8" opacity=".4"/>
+            </g>
+          </g>
+        </svg>
+    </div>
+    
+    <div style="border: 1px solid #ccc; padding: 20px; margin: 20px 0;">
+        <h2>Scale Test - 64x48</h2>
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" width="64" height="48" style="border: 1px solid #ddd;">
+          <!-- Same SVG content but smaller -->
+        </svg>
+    </div>
+    
+    <div style="border: 1px solid #ccc; padding: 20px; margin: 20px 0;">
+        <h2>Scale Test - 32x24</h2>
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" width="32" height="24" style="border: 1px solid #ddd;">
+          <!-- Same SVG content but very small -->
+        </svg>
+    </div>
+</body>
+</html>
