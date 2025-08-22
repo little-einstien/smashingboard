@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { getGlobalAudioContext, ensureAudioContextRunning } from '../utils/audioUtils'
 import FrameMenu from './FrameMenu'
 
 interface BearFaceScreenProps {
@@ -48,40 +49,36 @@ export default function BearFaceScreen({ onBackToMenu }: BearFaceScreenProps): R
     const [bearExpression, setBearExpression] = useState('happy')
     const [isAnimating, setIsAnimating] = useState(false)
     
-    const audioContextRef = useRef<AudioContext | null>(null)
-    const [isAudioInitialized, setIsAudioInitialized] = useState(false)
     const itemIdRef = useRef(0)
     const containerRef = useRef<HTMLDivElement>(null)
 
     const initAudio = () => {
-        if (!isAudioInitialized && typeof window !== 'undefined') {
-            try {
-                audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)()
-                setIsAudioInitialized(true)
-            } catch (error) {
-                console.log('Audio not supported')
-            }
-        }
+        // Use global audio context
+        return getGlobalAudioContext()
     }
 
-    const playSound = (frequency = 440, duration = 200) => {
-        if (!audioContextRef.current) return
-
+    const playSound = async (frequency = 440, duration = 200) => {
         try {
-            const oscillator = audioContextRef.current.createOscillator()
-            const gainNode = audioContextRef.current.createGain()
+            const audioContext = getGlobalAudioContext()
+            if (!audioContext) return
+
+            // Ensure audio context is running (required for iOS)
+            await ensureAudioContextRunning()
+
+            const oscillator = audioContext.createOscillator()
+            const gainNode = audioContext.createGain()
 
             oscillator.connect(gainNode)
-            gainNode.connect(audioContextRef.current.destination)
+            gainNode.connect(audioContext.destination)
 
-            oscillator.frequency.setValueAtTime(frequency, audioContextRef.current.currentTime)
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime)
             oscillator.type = 'sine'
 
-            gainNode.gain.setValueAtTime(0.2, audioContextRef.current.currentTime)
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContextRef.current.currentTime + duration / 1000)
+            gainNode.gain.setValueAtTime(0.2, audioContext.currentTime)
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration / 1000)
 
-            oscillator.start(audioContextRef.current.currentTime)
-            oscillator.stop(audioContextRef.current.currentTime + duration / 1000)
+            oscillator.start(audioContext.currentTime)
+            oscillator.stop(audioContext.currentTime + duration / 1000)
         } catch (error) {
             console.log('Error playing sound:', error)
         }
@@ -110,9 +107,7 @@ export default function BearFaceScreen({ onBackToMenu }: BearFaceScreenProps): R
     }, [])
 
     const handleKeyPress = useCallback((event: KeyboardEvent) => {
-        if (!isAudioInitialized) {
-            initAudio()
-        }
+        initAudio()
 
         // Check for Ctrl+K combination
         if (event.ctrlKey && event.key.toLowerCase() === 'k') {
@@ -152,12 +147,10 @@ export default function BearFaceScreen({ onBackToMenu }: BearFaceScreenProps): R
 
         // Clear key display
         setTimeout(() => setKeyPressed(''), 1000)
-    }, [isAudioInitialized, onBackToMenu, createFloatingItem])
+    }, [onBackToMenu, createFloatingItem])
 
     const handleTouch = useCallback(() => {
-        if (!isAudioInitialized) {
-            initAudio()
-        }
+        initAudio()
 
         setKeyPressed('TAP!')
 
@@ -182,7 +175,7 @@ export default function BearFaceScreen({ onBackToMenu }: BearFaceScreenProps): R
 
         // Clear key display
         setTimeout(() => setKeyPressed(''), 1000)
-    }, [isAudioInitialized, createFloatingItem])
+    }, [createFloatingItem])
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyPress)

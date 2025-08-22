@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useGesture } from '@use-gesture/react'
 import type { Category } from '../page'
 import FrameMenu from './FrameMenu'
+import { getGlobalAudioContext, ensureAudioContextRunning } from '../utils/audioUtils'
 
 interface GameAreaProps {
     category: Category
@@ -102,8 +103,6 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
     })
 
     const animationAreaRef = useRef<HTMLDivElement>(null)
-    const audioContextRef = useRef<AudioContext | null>(null)
-    const [isAudioInitialized, setIsAudioInitialized] = useState(false)
     const backgroundObjectIdRef = useRef(0)
     const characterInstanceIdRef = useRef(0)
 
@@ -178,20 +177,20 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
     }
 
     const initAudio = () => {
-        if (!isAudioInitialized && typeof window !== 'undefined') {
-            try {
-                audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)()
-                setIsAudioInitialized(true)
-            } catch (error) {
-                console.log('Audio not supported')
-            }
-        }
+        // Use global audio context
+        return getGlobalAudioContext()
     }
 
-    const playSound = (frequency = 220, duration = 400) => {
-        if (!audioContextRef.current || !settings.soundEnabled) return
+    const playSound = async (frequency = 220, duration = 400) => {
+        if (!settings.soundEnabled) return
 
         try {
+            const audioContext = getGlobalAudioContext()
+            if (!audioContext) return
+
+            // Ensure audio context is running (required for iOS)
+            await ensureAudioContextRunning()
+
             // Create a melodious sequence of 3 harmonious notes
             const baseFreq = frequency
             const melody = [
@@ -201,21 +200,21 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
             ]
 
             melody.forEach((note, index) => {
-                const oscillator = audioContextRef.current!.createOscillator()
-                const gainNode = audioContextRef.current!.createGain()
+                const oscillator = audioContext.createOscillator()
+                const gainNode = audioContext.createGain()
 
                 oscillator.connect(gainNode)
-                gainNode.connect(audioContextRef.current!.destination)
+                gainNode.connect(audioContext.destination)
 
                 // Use triangle wave for softer, more musical tone
                 oscillator.type = 'triangle'
                 
                 // Set frequency with gentle glide
-                oscillator.frequency.setValueAtTime(note.freq, audioContextRef.current!.currentTime + note.start)
-                oscillator.frequency.linearRampToValueAtTime(note.freq * 1.02, audioContextRef.current!.currentTime + note.start + note.duration)
+                oscillator.frequency.setValueAtTime(note.freq, audioContext.currentTime + note.start)
+                oscillator.frequency.linearRampToValueAtTime(note.freq * 1.02, audioContext.currentTime + note.start + note.duration)
 
                 // Create gentle volume envelope for each note
-                const noteStart = audioContextRef.current!.currentTime + note.start
+                const noteStart = audioContext.currentTime + note.start
                 const noteEnd = noteStart + note.duration
                 
                 gainNode.gain.setValueAtTime(0, noteStart)
@@ -305,9 +304,7 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
 
     const handleKeyPress = useCallback((event: KeyboardEvent) => {
         // Initialize audio on first interaction
-        if (!isAudioInitialized) {
-            initAudio()
-        }
+        initAudio()
 
         // Check for Ctrl+K combination
         if (event.ctrlKey && event.key.toLowerCase() === 'k') {
@@ -364,13 +361,11 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
 
         // Clear key display - optimized timing
         setTimeout(() => setKeyPressed(''), 1000)
-    }, [isAudioInitialized, data.items.length, onBackToMenu, settings, createCharacterInstance, getCharacterClass])
+    }, [data.items.length, onBackToMenu, settings, createCharacterInstance, getCharacterClass])
 
     const handleTouch = useCallback((event?: any) => {
         // Initialize audio on first interaction
-        if (!isAudioInitialized) {
-            initAudio()
-        }
+        initAudio()
 
         // Prevent event bubbling and default behavior
         if (event) {
@@ -416,7 +411,7 @@ export default function GameArea({ category, onBackToMenu }: GameAreaProps): Rea
 
         // Clear key display - optimized timing
         setTimeout(() => setKeyPressed(''), 1000)
-    }, [isAudioInitialized, data.items.length, settings, createCharacterInstance, getCharacterClass])
+    }, [data.items.length, settings, createCharacterInstance, getCharacterClass])
 
     const toggleSetting = (key: keyof Settings) => {
         setSettings(prev => ({ ...prev, [key]: !prev[key] }))
