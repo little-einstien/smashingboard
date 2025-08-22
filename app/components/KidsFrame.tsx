@@ -54,10 +54,14 @@ export default function KidsFrame({ children, frameMenu, isGameActive = false }:
       {/* Bottom Border Decorations */}
       <div className="frame-border bottom-border">
         <div className="border-decoration">🌻</div>
-        {isGameActive && (
+        {isGameActive ? (
           <div className="exit-hint">
           💻 Computer : Press any key to play and Ctrl+K to exit 📱 Mobile: Tap anywhere to play
                       </div>
+        ) : (
+          <div className="landing-footer">
+            <div className="footer-text">Made with ❤️ for little learners</div>
+          </div>
         )}
         <div className="border-decoration">🌻</div>
       </div>
